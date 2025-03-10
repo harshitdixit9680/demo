@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChikuCoin Wallet</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script defer src="index.js"></script>
+</head>
+<body>
+    <header>
+        <h1>ChikuCoin Wallet</h1>
+        <button onclick="navigate('home')">Home</button>
+        <button onclick="navigate('wallet')">My Wallet</button>
+        <button onclick="toggleTheme()" id="theme-toggle">Toggle Theme</button>
+    </header>
+    
+    <section id="home">
+        <h2>Live Crypto Prices</h2>
+        <div id="crypto-prices">
+            <p>Bitcoin: <span id="btc-price">$0</span></p>
+            <p>Ethereum: <span id="eth-price">$0</span></p>
+            <p>Dogecoin: <span id="doge-price">$0</span></p>
+            <p>ChikuCoin: <span id="chiku-price">$0</span></p>
+        </div>
+        <button onclick="fetchPrices()" id="update-prices-button">
+            <span id="update-prices-text">Update Prices</span>
+            <span id="update-prices-spinner" style="display: none;">Loading...</span>
+        </button>
+    </section>
+    
+    <section id="wallet" style="display:none;">
+        <h2>Your Wallet</h2>
+        <p>Balance: <span id="balance">1000</span> CHK</p>
+        <button onclick="generateQRCode()">Generate QR Code</button>
+        <div id="qrcode"></div>
+        
+        <h3>Send ChikuCoin</h3>
+        <input type="text" id="recipient" placeholder="Enter recipient address">
+        <input type="number" id="amount" placeholder="Amount">
+        <button onclick="sendChikuCoin()">Send</button>
+        
+        <h3>Burn Mechanism</h3>
+        <p>Last Burn: <span id="last-burn">Not yet</span></p>
+        <button onclick="burnCoins()">Burn 1% CHK</button>
+        
+        <h3>AI Prediction</h3>
+        <p>Next 24h Prediction: <span id="prediction">Loading...</span></p>
+        <button onclick="predictCoin()">Get Prediction</button>
+        
+        <h3>Transaction History</h3>
+        <ul id="transaction-history"></ul>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 ChikuCoin. All rights reserved.</p>
+    </footer>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmation-popup" class="popup">
+        <div class="popup-content">
+            <p id="popup-message"></p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+</body>
+</html>
